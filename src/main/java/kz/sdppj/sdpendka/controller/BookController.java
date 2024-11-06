@@ -26,6 +26,7 @@ public class BookController {
         return "index";
     }
 
+    @PostMapping("/book/create")
     public String createBook(Book book, Model model) {
         try {
             bookFacade.addBook(book);
@@ -35,7 +36,6 @@ public class BookController {
         }
         return "redirect:/";
     }
-
 
     @PostMapping("/book/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
