@@ -1,7 +1,7 @@
 package kz.sdppj.sdpendka.controller;
 
 import kz.sdppj.sdpendka.model.Book;
-import kz.sdppj.sdpendka.service.BookService;
+import kz.sdppj.sdpendka.service.decorator_facade.BookFacade;
 import kz.sdppj.sdpendka.service.strategy.AuthorSearchStrategy;
 import kz.sdppj.sdpendka.service.strategy.TitleSearchStrategy;
 import lombok.RequiredArgsConstructor;
@@ -17,29 +17,29 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class BookController {
-    private final BookService bookService;
+    private final BookFacade bookFacade;
 
     @GetMapping("/")
     public String books(Model model) {
-        model.addAttribute("books", bookService.listBooks());
+        model.addAttribute("books", bookFacade.getAllBooks());
         return "index";
     }
 
     @PostMapping("/book/create")
     public String createBook(Book book) {
-        bookService.saveBook(book);
+        bookFacade.addBook(book);
         return "redirect:/";
     }
 
     @PostMapping("/book/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
-        bookService.deleteBook(id);
+        bookFacade.removeBook(id);
         return "redirect:/";
     }
 
     @GetMapping("/book/{id}")
     public String bookInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("book", bookService.getBookById(id));
+        model.addAttribute("book", bookFacade.getBookById(id));
         return "book-info";
     }
 
