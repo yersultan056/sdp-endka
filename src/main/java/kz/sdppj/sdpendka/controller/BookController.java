@@ -62,4 +62,15 @@ public class BookController {
         model.addAttribute("books", result);
         return "index";
     }
+
+    @GetMapping("/book/clone/{id}")
+    public String cloneBook(@PathVariable Long id) {
+        Book originalBook = bookFacade.getBookById(id);
+        if (originalBook != null) {
+            Book clonedBook = originalBook.clone();
+            bookFacade.addBook(clonedBook);
+        }
+        return "redirect:/";
+    }
+
 }

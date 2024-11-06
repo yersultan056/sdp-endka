@@ -18,7 +18,6 @@ public class BookService {
     private BookHandler validator;
 
     public BookService() {
-        // Установка цепочки обработчиков
         this.validator = new TitleValidatorHandler();
         validator.linkWith(new AuthorValidatorHandler())
                 .linkWith(new PagesValidatorHandler())

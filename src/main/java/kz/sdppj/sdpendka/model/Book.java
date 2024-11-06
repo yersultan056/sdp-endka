@@ -1,11 +1,14 @@
 package kz.sdppj.sdpendka.model;
 
+import kz.sdppj.sdpendka.controller.CloneableBook;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Book {
+@Builder
+public class Book implements CloneableBook {
     private Long id;
     private String title;
     private String author;
@@ -14,4 +17,9 @@ public class Book {
     private String genre;
     private String year;
     private String description;
+
+    @Override
+    public Book clone() {
+        return new Book(null, this.title, this.author, this.publisher, this.pages, this.genre, this.year, this.description);
+    }
 }

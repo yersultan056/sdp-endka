@@ -25,6 +25,14 @@
     <button type="submit">Search</button>
     <a href="/" class="reset-button">Reset</a>
 </form>
+<div th:each="book : ${books}">
+    <p>
+        <b th:text="${book.title}"></b><b>,</b>
+        <span th:text="${book.author}"></span> |
+        <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
+        <a th:href="@{/book/clone/{id}(id=${book.id})}">Clone</a>
+    </p>
+</div>
 
 <hr>
 <h3>Create new book</h3>
