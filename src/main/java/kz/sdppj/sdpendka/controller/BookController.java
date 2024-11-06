@@ -37,6 +37,28 @@ public class BookController {
         return "redirect:/";
     }
 
+    /*@PostMapping("/book/create")
+    public String createBook(@RequestParam(required = false) String title,
+                             @RequestParam(required = false) String author,
+                             @RequestParam(required = false) String publisher,
+                             @RequestParam(required = false) String pages,
+                             @RequestParam(required = false) String genre,
+                             @RequestParam(required = false) String year,
+                             @RequestParam(required = false) String description) {
+        Book book = new BookBuilder()
+                .setTitle(title)
+                .setAuthor(author)
+                .setPublisher(publisher)
+                .setPages(pages)
+                .setGenre(genre)
+                .setYear(year)
+                .setDescription(description)
+                .build();
+        bookFacade.addBook(book);
+        return "redirect:/";
+    }*/
+
+
     @PostMapping("/book/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookFacade.removeBook(id);
