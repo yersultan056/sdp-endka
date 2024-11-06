@@ -1,5 +1,6 @@
 package kz.sdppj.sdpendka.controller;
 
+import factory.BookFactory;
 import kz.sdppj.sdpendka.model.Book;
 import kz.sdppj.sdpendka.model.ValidationException;
 import kz.sdppj.sdpendka.service.decorator_facade.BookFacade;
@@ -27,15 +28,15 @@ public class BookController {
     }
 
     @PostMapping("/book/create")
-    public String createBook(Book book, Model model) {
-        try {
-            bookFacade.addBook(book);
-        } catch (ValidationException e) {
-            model.addAttribute("error", e.getMessage());
-            return "index";
-        }
+    public String createBook(@RequestParam String title, @RequestParam String author,
+                             @RequestParam String publisher, @RequestParam String pages,
+                             @RequestParam String genre, @RequestParam String year,
+                             @RequestParam String description) {
+        Book book = BookFactory.createBook(title, author, publisher, pages, genre, year, description);
+        bookFacade.addBook(book);
         return "redirect:/";
     }
+
 
     @PostMapping("/book/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
