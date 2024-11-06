@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h1>Product List</h1>
+<h1>Book list</h1>
 
 <form action="/search" method="get">
     <input type="text" name="query" placeholder="Search">
@@ -19,29 +19,52 @@
     <a href="/" class="reset-button">Reset</a>
 </form>
 
-<div th:each="book : ${books}">
-    <p>
-        <b th:text="${book.title}"></b><b>,</b>
-        <span th:text="${book.author}"></span> |
-        <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
-    </p>
-</div>
-<hr>
-<div th:each="book : ${books}">
-    <p>
-        <b th:text="${book.title}"></b><b>,</b>
-        <span th:text="${book.author}"></span> |
-        <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
-        <a th:href="@{/book/clone/{id}(id=${book.id})}">Clone</a>
-    </p>
-</div>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td><b th:text="${book.title}"></b></td>
+        <td th:text="${book.author}"></td>
+        <td>
+            <a th:href="@{/book/{id}(id=${book.id})}">More info</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-<hr>
-<h3>Create new book</h3>
+<h2>Prototype</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td><b th:text="${book.title}"></b></td>
+        <td><span th:text="${book.author}"></span></td>
+        <td>
+            <a th:href="@{/book/{id}(id=${book.id})}">More info</a>  |
+            <a th:href="@{/book/clone/{id}(id=${book.id})}">Clone</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
 <div th:if="${error}" style="color: red;">
     <p th:text="${error}"></p>
 </div>
 <form action="/book/create" method="post">
+    <h2>Create new book</h2>
     Title of book: <input type="text" name="title"><br><br>
     Author: <input type="text" name="author"><br><br>
     Publisher: <input type="text" name="publisher"><br><br>

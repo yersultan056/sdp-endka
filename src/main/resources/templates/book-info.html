@@ -7,25 +7,21 @@
     <link rel="stylesheet" href="/css/baik.css">
 </head>
 <body>
-<h1>More about book</h1>
-<b>Book name: </b><span th:text="${book.title}"></span><br>
-<b>Book author: </b><span th:text="${book.author}"></span><br>
-<b>Book publisher: </b><span th:text="${book.publisher}"></span><br>
-<b>Book pages: </b><span th:text="${book.pages}"></span><br>
-<b>Book genre: </b><span th:text="${book.genre}"></span><br>
-<b>Book year: </b><span th:text="${book.year}"></span><br>
-<b>Book description: </b><span th:text="${book.description}"></span>
-
-
-
-
-
-
-<hr>
-<h3>Remove book</h3>
-<form th:action="@{/book/delete/{id}(id=${book.id})}" method="post">
-    <input type="hidden" name="_method" value="delete"/>
-    <input type="submit" value="Remove book"/>
-</form>
+<div class="container">
+    <h1>More about book</h1>
+    <b>Title: </b><span th:text="${book.title}"></span><br>
+    <b>Author: </b><span th:text="${book.author}"></span><br>
+    <b>Publisher: </b><span th:text="${book.publisher}"></span><br>
+    <b>Pages: </b><span th:text="${book.pages}"></span><br>
+    <b>Genre: </b><span th:text="${book.genre}"></span><br>
+    <b>Year: </b><span th:text="${book.year}"></span><br>
+    <b>Description: </b><span th:text="${book.description}"></span>
+    <hr>
+    <h3>Remove book</h3>
+    <form th:action="@{/book/delete/{id}(id=${book.id})}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <input type="submit" value="Remove book"/>
+    </form>
+</div>
 </body>
 </html>

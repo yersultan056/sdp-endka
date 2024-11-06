@@ -33,8 +33,20 @@ public class BookService {
     }
 
     {
+
+        books.add(new Book(++ID, "The Catcher in the Rye", "J.D. Salinger", "Little, Brown and Company", "277", "Fiction", "1951", "A novel about a disillusioned teenager."));
+        books.add(new Book(++ID, "To Kill a Mockingbird", "Harper Lee", "J.B. Lippincott & Co.", "281", "Fiction", "1960", "A story of racial injustice in the Deep South."));
+        books.add(new Book(++ID, "1984", "George Orwell", "Secker & Warburg", "328", "Dystopian", "1949", "A dystopian novel about totalitarianism."));
+        books.add(new Book(++ID, "The Great Gatsby", "F. Scott Fitzgerald", "Charles Scribner's Sons", "180", "Fiction", "1925", "A story of wealth, love, and betrayal in the Jazz Age."));
+        books.add(new Book(++ID, "Moby-Dick", "Herman Melville", "Harper & Brothers", "585", "Adventure", "1851", "The journey of the whaling ship Pequod."));
+        books.add(new Book(++ID, "Pride and Prejudice", "Jane Austen", "T. Egerton", "279", "Romance", "1813", "A story of love and manners in 19th century England."));
+        books.add(new Book(++ID, "The Hobbit", "J.R.R. Tolkien", "George Allen & Unwin", "310", "Fantasy", "1937", "Bilbo Baggins' adventure to reclaim treasure."));
+        books.add(new Book(++ID, "The Lord of the Rings: The Fellowship of the Ring", "J.R.R. Tolkien", "George Allen & Unwin", "423", "Fantasy", "1954", "The first book in the epic Lord of the Rings trilogy."));
+        books.add(new Book(++ID, "The Picture of Dorian Gray", "Oscar Wilde", "Lippincott's Monthly Magazine", "254", "Philosophical Fiction", "1890", "A story exploring the relationship between beauty, morality, and corruption."));
+        books.add(new Book(++ID, "The Importance of Being Earnest", "Oscar Wilde", "Lindsay and Blakiston", "120", "Comedy", "1895", "A satirical comedy of manners about love and mistaken identities."));
         books.add(new Book(++ID, "Baikens life", "Baiken", "Bays", "800", "life action", "2024", "some bout baik"));
         books.add(new Book(++ID, "Azas life", "Baiken", "Bays", "503", "life action", "2024", "some bout aza"));
+        books.add(new Book(++ID, "Brave New World", "Aldous Huxley", "Chatto & Windus", "311", "Dystopian", "1932", "A visionary dystopian novel about a technologically advanced, but soulless society."));
 
     }
 
