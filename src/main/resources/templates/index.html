@@ -15,6 +15,17 @@
         <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
     </p>
 </div>
+
+<form action="/search" method="get">
+    <input type="text" name="query" placeholder="Search">
+    <select name="type">
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+    </select>
+    <button type="submit">Search</button>
+    <a href="/" class="reset-button">Reset</a>
+</form>
+
 <hr>
 <h3>Create new book</h3>
 <form action="/book/create" method="post">

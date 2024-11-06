@@ -2,12 +2,17 @@ package kz.sdppj.sdpendka.controller;
 
 import kz.sdppj.sdpendka.model.Book;
 import kz.sdppj.sdpendka.service.BookService;
+import kz.sdppj.sdpendka.service.strategy.AuthorSearchStrategy;
+import kz.sdppj.sdpendka.service.strategy.TitleSearchStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,5 +41,19 @@ public class BookController {
     public String bookInfo(@PathVariable Long id, Model model) {
         model.addAttribute("book", bookService.getBookById(id));
         return "book-info";
+    }
+
+    @GetMapping("/search")
+    public String searchBooks(@RequestParam String query,
+                              @RequestParam String type, Model model) {
+        if ("title".equalsIgnoreCase(type)) {
+            bookService.setSearchStrategy(new TitleSearchStrategy());
+        } else if ("author".equalsIgnoreCase(type)) {
+            bookService.setSearchStrategy(new AuthorSearchStrategy());
+        }
+
+        List<Book> result = bookService.searchBooks(query);
+        model.addAttribute("books", result);
+        return "index";
     }
 }
