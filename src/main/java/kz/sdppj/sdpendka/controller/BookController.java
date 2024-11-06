@@ -27,13 +27,13 @@ public class BookController {
         return "index";
     }
 
-    @PostMapping("/book/create")
-    public String createBook(@RequestParam String title, @RequestParam String author,
-                             @RequestParam String publisher, @RequestParam String pages,
-                             @RequestParam String genre, @RequestParam String year,
-                             @RequestParam String description) {
-        Book book = BookFactory.createBook(title, author, publisher, pages, genre, year, description);
-        bookFacade.addBook(book);
+    public String createBook(Book book, Model model) {
+        try {
+            bookFacade.addBook(book);
+        } catch (ValidationException e) {
+            model.addAttribute("error", e.getMessage());
+            return "index";
+        }
         return "redirect:/";
     }
 
