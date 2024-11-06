@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Book Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
 </head>
 <body>
-<header>
-    <h1>Book Catalog</h1>
-</header>
+<h1>Product List</h1>
 
-<main>
-    <h2>Available Books</h2>
-</main>
-
+<div th:each="book : ${books}">
+    <p>
+        <b th:text="${book.title}"></b><b>,</b>
+        <span th:text="${book.author}"></span> |
+        <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
+    </p>
+</div>
+<hr>
+<h3>Create new book</h3>
+<form action="/book/create" method="post">
+    Title of book: <input type="text" name="title"><br><br>
+    Author: <input type="text" name="author"><br><br>
+    Publisher: <input type="text" name="publisher"><br><br>
+    Pages: <input type="number" name="pages"><br><br>
+    Genre: <input type="text" name="genre"><br><br>
+    Year: <input type="number" name="year"><br><br>
+    Description: <input type="text" name="description"><br><br>
+    <input type="submit" value="Add book"/>
+</form>
 </body>
 </html>
