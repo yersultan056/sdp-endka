@@ -47,12 +47,12 @@ public class BookController {
     public String searchBooks(@RequestParam String query,
                               @RequestParam String type, Model model) {
         if ("title".equalsIgnoreCase(type)) {
-            bookService.setSearchStrategy(new TitleSearchStrategy());
+            bookFacade.setSearchStrategy(new TitleSearchStrategy());
         } else if ("author".equalsIgnoreCase(type)) {
-            bookService.setSearchStrategy(new AuthorSearchStrategy());
+            bookFacade.setSearchStrategy(new AuthorSearchStrategy());
         }
 
-        List<Book> result = bookService.searchBooks(query);
+        List<Book> result = bookFacade.searchBooks(query);
         model.addAttribute("books", result);
         return "index";
     }

@@ -2,6 +2,7 @@ package kz.sdppj.sdpendka.service.decorator_facade;
 
 import kz.sdppj.sdpendka.model.Book;
 import kz.sdppj.sdpendka.service.BookService;
+import kz.sdppj.sdpendka.service.strategy.SearchStrategy;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,5 +29,13 @@ public class BookFacade {
 
     public void removeBook(Long id) {
         bookService.deleteBook(id);
+    }
+
+    public void setSearchStrategy(SearchStrategy strategy) {
+        bookService.setSearchStrategy(strategy);
+    }
+
+    public List<Book> searchBooks(String query) {
+        return bookService.searchBooks(query);
     }
 }
