@@ -1,6 +1,7 @@
 package kz.sdppj.sdpendka.controller;
 
 import kz.sdppj.sdpendka.model.Book;
+import kz.sdppj.sdpendka.model.ValidationException;
 import kz.sdppj.sdpendka.service.decorator_facade.BookFacade;
 import kz.sdppj.sdpendka.service.strategy.AuthorSearchStrategy;
 import kz.sdppj.sdpendka.service.strategy.TitleSearchStrategy;
@@ -26,8 +27,13 @@ public class BookController {
     }
 
     @PostMapping("/book/create")
-    public String createBook(Book book) {
-        bookFacade.addBook(book);
+    public String createBook(Book book, Model model) {
+        try {
+            bookFacade.addBook(book);
+        } catch (ValidationException e) {
+            model.addAttribute("error", e.getMessage());
+            return "index";
+        }
         return "redirect:/";
     }
 

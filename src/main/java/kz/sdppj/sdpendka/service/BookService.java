@@ -1,6 +1,8 @@
 package kz.sdppj.sdpendka.service;
 
 import kz.sdppj.sdpendka.model.Book;
+import kz.sdppj.sdpendka.model.ValidationException;
+import kz.sdppj.sdpendka.service.chain.*;
 import kz.sdppj.sdpendka.service.strategy.BookSearch;
 import kz.sdppj.sdpendka.service.strategy.SearchStrategy;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,15 @@ public class BookService {
     private List<Book> books = new ArrayList<>();
     private long ID = 0;
     private BookSearch searchContext = new BookSearch();
+    private BookHandler validator;
+
+    public BookService() {
+        // Установка цепочки обработчиков
+        this.validator = new TitleValidatorHandler();
+        validator.linkWith(new AuthorValidatorHandler())
+                .linkWith(new PagesValidatorHandler())
+                .linkWith(new YearValidatorHandler());
+    }
 
     public void setSearchStrategy(SearchStrategy strategy) {
         searchContext.setStrategy(strategy);
@@ -32,9 +43,16 @@ public class BookService {
         return books;
     }
 
-    public void saveBook (Book book) {
-        book.setId(++ID);
-        books.add(book);
+    public void saveBook(Book book) {
+        try {
+            if (!validator.handle(book)) {
+                throw new ValidationException("Invalid book data.");
+            }
+            book.setId(++ID);
+            books.add(book);
+        } catch (ValidationException e) {
+            throw e;
+        }
     }
 
     public void deleteBook (Long id) {

@@ -28,6 +28,9 @@
 
 <hr>
 <h3>Create new book</h3>
+<div th:if="${error}" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
 <form action="/book/create" method="post">
     Title of book: <input type="text" name="title"><br><br>
     Author: <input type="text" name="author"><br><br>
