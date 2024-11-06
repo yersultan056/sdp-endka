@@ -4,17 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <h1>Product List</h1>
-
-<div th:each="book : ${books}">
-    <p>
-        <b th:text="${book.title}"></b><b>,</b>
-        <span th:text="${book.author}"></span> |
-        <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
-    </p>
-</div>
 
 <form action="/search" method="get">
     <input type="text" name="query" placeholder="Search">
@@ -25,6 +18,15 @@
     <button type="submit">Search</button>
     <a href="/" class="reset-button">Reset</a>
 </form>
+
+<div th:each="book : ${books}">
+    <p>
+        <b th:text="${book.title}"></b><b>,</b>
+        <span th:text="${book.author}"></span> |
+        <a th:href="@{/book/{id}(id=${book.id})}">More info…</a>
+    </p>
+</div>
+<hr>
 <div th:each="book : ${books}">
     <p>
         <b th:text="${book.title}"></b><b>,</b>
