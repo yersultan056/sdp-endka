@@ -60,9 +60,10 @@
 </table>
 
 
-<div th:if="${error}" style="color: red;">
+<div th:if="${error}" class="error-message">
     <p th:text="${error}"></p>
 </div>
+
 <form action="/book/create" method="post">
     <h2>Create new book</h2>
     Title of book: <input type="text" name="title"><br><br>
