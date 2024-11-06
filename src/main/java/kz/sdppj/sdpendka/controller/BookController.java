@@ -1,6 +1,5 @@
 package kz.sdppj.sdpendka.controller;
 
-import factory.BookFactory;
 import kz.sdppj.sdpendka.model.Book;
 import kz.sdppj.sdpendka.model.ValidationException;
 import kz.sdppj.sdpendka.service.decorator_facade.BookFacade;
